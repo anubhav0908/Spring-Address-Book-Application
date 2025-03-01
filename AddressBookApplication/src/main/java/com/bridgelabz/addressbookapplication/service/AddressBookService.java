@@ -22,7 +22,7 @@ public class AddressBookService {
         return addressBookList;
     }
 
-    public AddressBook getContactByIndex(int index) {
+    public AddressBook getContactById(int index) {
         if (index >= 0 && index < addressBookList.size()) {
             return addressBookList.get(index);
         }
@@ -45,4 +45,6 @@ public class AddressBookService {
         }
         return "Contact not found!";
     }
+
+
 }

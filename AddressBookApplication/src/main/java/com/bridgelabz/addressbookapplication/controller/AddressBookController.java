@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/addressbook")
@@ -28,19 +29,19 @@ public class AddressBookController {
         return ResponseEntity.ok(service.getAllContacts());
     }
 
-    @GetMapping("/{index}")
-    public ResponseEntity<Object> getContactByIndex(@PathVariable int index) {
-        AddressBook contact = service.getContactByIndex(index);
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getContactById(@PathVariable int id) {
+        AddressBook contact = service.getContactById(id);
         return (contact != null) ? ResponseEntity.ok(contact) : ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/update/{index}")
-    public ResponseEntity<String> updateContact(@PathVariable int index, @RequestBody AddressBookDTO dto) {
-        return ResponseEntity.ok(service.updateContact(index, dto));
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateContact(@PathVariable int id, @RequestBody AddressBookDTO dto) {
+        return ResponseEntity.ok(service.updateContact(id, dto));
     }
 
-    @DeleteMapping("/delete/{index}")
-    public ResponseEntity<String> deleteContact(@PathVariable int index) {
-        return ResponseEntity.ok(service.deleteContact(index));
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteContact(@PathVariable int id) {
+        return ResponseEntity.ok(service.deleteContact(id));
     }
 }
