@@ -27,4 +27,20 @@ public class AddressBookController {
     public ResponseEntity<List<AddressBook>> getAllContacts() {
         return ResponseEntity.ok(service.getAllContacts());
     }
+
+    @GetMapping("/{index}")
+    public ResponseEntity<Object> getContactByIndex(@PathVariable int index) {
+        AddressBook contact = service.getContactByIndex(index);
+        return (contact != null) ? ResponseEntity.ok(contact) : ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/update/{index}")
+    public ResponseEntity<String> updateContact(@PathVariable int index, @RequestBody AddressBookDTO dto) {
+        return ResponseEntity.ok(service.updateContact(index, dto));
+    }
+
+    @DeleteMapping("/delete/{index}")
+    public ResponseEntity<String> deleteContact(@PathVariable int index) {
+        return ResponseEntity.ok(service.deleteContact(index));
+    }
 }
